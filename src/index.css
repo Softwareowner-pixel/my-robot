@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens for my robot — CSS custom properties */
+:root {
+  /* Color roles */
+  --color-bg: #051218;
+  --color-surface: #0c141b;
+  --color-surface-elevated: #11242b;
+  --color-border: #2a4a55;
+  --color-border-input: #4b7e88;
+  --color-text: #e8edf0;
+  --color-text-muted: #9ca3af;
+  --color-text-dim: #6b7280;
+  --color-accent: #34909f;
+  --color-accent-hover: #5db8c4;
+  --color-accent-muted: #1e464c;
+  --color-on-accent: #031015;
+  --color-accent-secondary: #438dfb;
+  --color-accent-secondary-hover: #5a7c96;
+  --color-danger: #ff4552;
+  --color-danger-hover: #ff6b75;
+  --color-danger-muted: #3d181c;
+  --color-success: #2dd4bf;
+  --color-success-muted: #134e4a;
+  --color-warning: #fbbf24;
+  --color-warning-muted: #4a3b0a;
+  --color-avatar-glow: #79b2ba;
+  --color-avatar-glow-strong: #538891;
+
+  /* Typography */
+  --font-sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: Space Grotesk, Inter, system-ui, sans-serif;
+
+  /* Type scale */
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-display: 3rem;
+
+  --leading-xs: 1rem;
+  --leading-sm: 1.125rem;
+  --leading-base: 1.375rem;
+  --leading-lg: 1.625rem;
+  --leading-xl: 1.875rem;
+  --leading-2xl: 2.375rem;
+  --leading-display: 3.25rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing scale (4px base) */
+  --space-0: 0;
+  --space-1: 0.125rem;
+  --space-2: 0.25rem;
+  --space-3: 0.5rem;
+  --space-4: 0.75rem;
+  --space-5: 1rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 3rem;
+  --space-9: 4rem;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-card: 0 2px 8px rgba(0,0,0,.35), 0 1px 3px rgba(0,0,0,.25);
+  --shadow-pop: 0 20px 48px rgba(0,0,0,.45), 0 8px 16px rgba(0,0,0,.3);
+  --shadow-glow: 0 0 24px rgba(52,144,159,.35), 0 0 48px rgba(52,144,159,.15);
+  --shadow-glow-strong: 0 0 32px rgba(52,144,159,.5), 0 0 64px rgba(52,144,159,.25);
+  --shadow-inner: inset 0 1px 2px rgba(255,255,255,.05);
+
+  /* Motion */
+  --duration-instant: 50ms;
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);
+
+  /* Layout */
+  --max-width: 1200px;
+  --sidebar-width: 280px;
+  --overlay-height: 56px;
+  --avatar-size: 200px;
+
+  /* Z-index */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-popover: 500;
+  --z-tooltip: 600;
+  --z-toast: 700;
+}
+
+/* Light mode overrides */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #f0f4f6;
+    --color-surface: #ffffff;
+    --color-surface-elevated: #f8fafc;
+    --color-border: #cbd5e1;
+    --color-border-input: #34909f;
+    --color-text: #0f172a;
+    --color-text-muted: #475569;
+    --color-text-dim: #94a3b8;
+    --color-on-accent: #ffffff;
+    --color-accent-muted: #ccfbf1;
+    --color-danger-muted: #fef2f2;
+    --color-success-muted: #ecfdf5;
+    --color-warning-muted: #fffbeb;
+  }
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Focus visible for keyboard navigation */
+:focus-visible {
+  outline: none;
+  ring: 2px solid var(--color-accent);
+  ring-offset: 2px;
+  ring-offset-color: var(--color-bg);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-input);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-accent-muted);
+  color: var(--color-on-accent);
+}
+
+/* Utility classes */
+.bg-bg { background-color: var(--color-bg); }
+.bg-surface { background-color: var(--color-surface); }
+.bg-surface-elevated { background-color: var(--color-surface-elevated); }
+.bg-accent { background-color: var(--color-accent); }
+.bg-accent-hover { background-color: var(--color-accent-hover); }
+.bg-danger { background-color: var(--color-danger); }
+.bg-success { background-color: var(--color-success); }
+.bg-warning { background-color: var(--color-warning); }
+
+.text-text { color: var(--color-text); }
+.text-muted { color: var(--color-text-muted); }
+.text-dim { color: var(--color-text-dim); }
+.text-on-accent { color: var(--color-on-accent); }
+
+.border-border { border-color: var(--color-border); }
+.border-input { border-color: var(--color-border-input); }
+
+.shadow-card { box-shadow: var(--shadow-card); }
+.shadow-pop { box-shadow: var(--shadow-pop); }
+.shadow-glow { box-shadow: var(--shadow-glow); }
+.shadow-glow-strong { box-shadow: var(--shadow-glow-strong); }
+
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-pill { border-radius: var(--radius-pill); }
+
+.transition-base { transition: all var(--duration-base) var(--ease); }
+.transition-fast { transition: all var(--duration-fast) var(--ease); }
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: var(--shadow-glow); }
+  50% { box-shadow: var(--shadow-glow-strong); }
+}
+
+@keyframes speak-wave {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes thinking-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-speak-wave { animation: speak-wave 100ms ease-in-out infinite; }
+.animate-thinking-spin { animation: thinking-spin 1s linear infinite; }
